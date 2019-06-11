@@ -71,6 +71,32 @@ const (
 	//	}
 	ExitCodeBadRequest = ExitCode{64}
 
+	// You would return this error — “bad input” — if the input data was bad in some way.
+	//
+	// For example, you would return this “error” ‘exit code’ if the bad input data was given to your software via:
+	//	• Stdin (i.e., os.Stdin), or
+	//	• a user file (ex: it does not exist, or cannot be opened, or has a syntax error), or
+	//	• input the user types in (maybe via a form), or
+	//	• etc.
+	//
+	// NOTE that if the input problem relates to an operating system (OS) file (such as “/etc/os-release”, “/etc/passwd”, “/var/run/utmp”, etc)
+	// then cli.ExitCodeOSFileError should be returned instead of cli.ExitCodeBadInput.
+	//
+	// Example
+	//
+	//	func run(stdin io.ReadCloser, stdout io.WriteCloser, stderr io.WriteCloser, args ...string) ExitCode {
+	//	
+	//		// ...
+	//	
+	//		if nil != err {
+	//			return cli.ExitCodeBadInput
+	//		}
+	//	
+	//		// ...
+	//	
+	//	}
+	ExitCodeBadInput = ExitCode{65}
+
 	// You would return this error — “internal error” — if an internal error has been detected in your software.
 	//
 	// Example
@@ -143,4 +169,6 @@ const (
 	//	
 	//	}
 	ExitCodeOSFileError = ExitCode{72}
+
+
 )
