@@ -1,8 +1,6 @@
 package cli
 
-type ExitCode struct {
-	value uint8
-}
+type ExitCode uint8
 
 const (
 	// This is the “success” or “OK” ‘exit code’.
@@ -19,7 +17,7 @@ const (
 	//	
 	//		return cli.ExitCodeOK
 	//	}
-	ExitCodeOK = ExitCode{0}
+	ExitCodeOK = ExitCode(0)
 
 	// This is a generic “error” ‘exit code’.
 	//
@@ -46,7 +44,7 @@ const (
 	//		// ...
 	//	
 	//	}
-	ExitCodeError = ExitCode{1}
+	ExitCodeError = ExitCode(1)
 
 	// You would return this error — “bad request” — if the request the user makes via the command line has an error in it.
 	//
@@ -69,7 +67,7 @@ const (
 	//		// ...
 	//	
 	//	}
-	ExitCodeBadRequest = ExitCode{64}
+	ExitCodeBadRequest = ExitCode(64)
 
 	// You would return this error — “bad input” — if the input data was bad in some way.
 	//
@@ -98,7 +96,7 @@ const (
 	//		// ...
 	//	
 	//	}
-	ExitCodeBadInput = ExitCode{65}
+	ExitCodeBadInput = ExitCode(65)
 
 	// You would return this error — “no input” — if the input data does not exist, or cannot be opened.
 	//
@@ -126,7 +124,7 @@ const (
 	//		// ...
 	//	
 	//	}
-	ExitCodeNoInput = ExitCode{66}
+	ExitCodeNoInput = ExitCode(66)
 
 	// You would return this error — “internal error” — if an internal error has been detected in your software.
 	//
@@ -143,7 +141,7 @@ const (
 	//		// ...
 	//	
 	//	}
-	ExitCodeInternalError = ExitCode{70}
+	ExitCodeInternalError = ExitCode(70)
 
 	// You would return this error — “OS error” — if an error with the operating system (OS) has been detected by your software.
 	//
@@ -181,7 +179,7 @@ const (
 	//		// ...
 	//	
 	//	}
-	ExitCodeOSError = ExitCode{71}
+	ExitCodeOSError = ExitCode(71)
 
 	// You would return this error — “OS file error” — if an operating system (OS) file that you expect to be there
 	// (such as “/etc/os-release”, “/etc/passwd”, “/var/run/utmp”, etc) does not exist, or cannot be opened, or has a syntax error.
@@ -199,7 +197,5 @@ const (
 	//		// ...
 	//	
 	//	}
-	ExitCodeOSFileError = ExitCode{72}
-
-
+	ExitCodeOSFileError = ExitCode(72)
 )
