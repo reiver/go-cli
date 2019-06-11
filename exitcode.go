@@ -1,6 +1,56 @@
 package cli
 
+import (
+	"fmt"
+	"io"
+)
+
 type ExitCode uint8
+
+func (receiver ExitCode) Code() uint8 {
+	return uint8(receiver)
+}
+
+func (receiver ExitCode) GoString() string {
+	return fmt.Sprintf("cli.ExitCode(%d)", receiver)
+}
+
+func (receiver ExitCode) String() string {
+	switch receiver {
+	case ExitCodeOK:
+		return "OK"
+	case ExitCodeError:
+		return "Error"
+	case ExitCodeBadRequest:
+		return "Bad Request"
+	case ExitCodeBadInput:
+		return "Bad Input"
+	case ExitCodeNoInput:
+		return "No Input"
+	case ExitCodeInternalError:
+		return "Internal Error"
+	case ExitCodeOSError:
+		return "OS Error"
+	case ExitCodeOSFileError:
+		return "OS File Error"
+
+	default:
+		return fmt.Sprintf("Unrecognized Error: ‘%d’", receiver)
+	}
+}
+
+func (receiver ExitCode) Error(stderr io.WriteCloser) ExitCode {
+	return receiver.Errorf(stderr, "%s", receiver.String())
+}
+
+func (receiver ExitCode) Errorf(stderr io.WriteCloser, format string, a ...interface{}) ExitCode {
+	fmt.Fprintf(stderr, format, a...)
+	return receiver
+}
+
+func (receiver ExitCode) Errorln(stderr io.WriteCloser) ExitCode {
+	return receiver.Errorf(stderr, "%s\n", receiver.String())
+}
 
 const (
 	// This is the “success” or “OK” ‘exit code’.
