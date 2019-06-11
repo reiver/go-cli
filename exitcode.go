@@ -75,12 +75,15 @@ const (
 	//
 	// For example, you would return this “error” ‘exit code’ if the bad input data was given to your software via:
 	//	• Stdin (i.e., os.Stdin), or
-	//	• a user file (ex: it does not exist, or cannot be opened, or has a syntax error), or
+	//	• a user file (ex: has a syntax error), or
 	//	• input the user types in (maybe via a form), or
 	//	• etc.
 	//
 	// NOTE that if the input problem relates to an operating system (OS) file (such as “/etc/os-release”, “/etc/passwd”, “/var/run/utmp”, etc)
 	// then cli.ExitCodeOSFileError should be returned instead of cli.ExitCodeBadInput.
+	//
+	// Also NOTE that if the input user file does not exist, or cannot be opened, then cli.ExitCodeNoInput
+	// should be returned instead of cli.ExitCodeBadInput.
 	//
 	// Example
 	//
@@ -96,6 +99,34 @@ const (
 	//	
 	//	}
 	ExitCodeBadInput = ExitCode{65}
+
+	// You would return this error — “no input” — if the input data does not exist, or cannot be opened.
+	//
+	// For example, you would return this “error” ‘exit code’ if:
+	//	• a user file that your software expected did not exist, or
+	//	• a user file (existed) by could not be opened, or
+	//	• etc.
+	//
+	// NOTE that if the input problem relates to an operating system (OS) file (such as “/etc/os-release”, “/etc/passwd”, “/var/run/utmp”, etc)
+	// then cli.ExitCodeOSFileError should be returned instead of cli.ExitCodeNoInput.
+	//
+	// Also NOTE that if the input user file (exists, and can indeed be opened, bu) has a syntax error,
+	// then cli.ExitCodeBadInput should be returned instead of cli.ExitCodeNoInput.
+	//
+	// Example
+	//
+	//	func run(stdin io.ReadCloser, stdout io.WriteCloser, stderr io.WriteCloser, args ...string) ExitCode {
+	//	
+	//		// ...
+	//	
+	//		if nil != err {
+	//			return cli.ExitCodeNoInput
+	//		}
+	//	
+	//		// ...
+	//	
+	//	}
+	ExitCodeNoInput = ExitCode{66}
 
 	// You would return this error — “internal error” — if an internal error has been detected in your software.
 	//
