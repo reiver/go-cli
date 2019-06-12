@@ -4,8 +4,8 @@ Package cli provides a way to creating command line interface (CLI) programs, fo
 Hello World Handler
 
 WARING: The ‘Hello World Handler’ example you are about to see is meant to give you a sense of how the cli.Handler works.
-If does not use cli.ServerMux. It would be pointless to use pakage cli without using cli.ServerMux.
-Later on we show you a more realistic example using cli.ServerMux. But anyway....
+If does not use cli.Mux. It would be pointless to use pakage cli without using cli.Mux.
+Later on we show you a more realistic example using cli.Mux. But anyway....
 
 Similar to http.Handler, that is part of the built-in Go "net/http" library, package cli has a cli.Handler.
 
@@ -43,7 +43,7 @@ And from your main() function, you might do something such as:
 
 Of course, if this is all you did, you would never use package cli.
 
-The power of package cli is when you use cli.ServerMux.
+The power of package cli is when you use cli.Mux.
 
 Exit Codes
 
