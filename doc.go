@@ -45,5 +45,48 @@ Of course, if this is all you did, you would never use package cli.
 
 The power of package cli is when you use cli.ServerMux.
 
+Exit Codes
+
+Note that in the example handler we just showed:
+
+	import "github.com/reiver/go-cli"
+	
+	// ...
+	
+	type HelloWorldCLIHandler struc{}
+	
+	func (HelloWorldCLIHandler) Run(stdin io.ReadCloser, stdout io.WriteCloser, stderr io.WriteCloser, command ...string) cli.ExitCode {
+		fmt.Fprintln(stdout, "Hello world!")
+
+		return cli.ExitCodeOK
+	}
+
+That is returned ‘cli.ExitCodeOK’.
+
+‘cli.ExitCodeOK’ is an ‘exit code’.
+
+There are in fact a number of ‘exit codes’ for you to choose from.
+
+And you should return the appropriate ‘exit code’ when writing your handlers.
+
+Other ‘exit codes’ include:
+
+• cli.ExitCodeOK
+
+• cli.ExitCodeError
+
+• cli.ExitCodeBadRequest
+
+• cli.ExitCodeBadInput
+
+• cli.ExitCodeNoInput
+
+• cli.ExitCodeInternalError
+
+• cli.ExitCodeOSError
+
+• cli.ExitCodeOSFileError
+
+See the documentation on each of these for when it is appropriate to use each of these.
 */
 package cli
