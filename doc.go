@@ -53,7 +53,7 @@ Note that in the example handler we just showed:
 	
 	// ...
 	
-	type HelloWorldCLIHandler struc{}
+	type HelloWorldCLIHandler struct{}
 	
 	func (HelloWorldCLIHandler) Run(stdin io.ReadCloser, stdout io.WriteCloser, stderr io.WriteCloser, command ...string) cli.ExitCode {
 		fmt.Fprintln(stdout, "Hello world!")
