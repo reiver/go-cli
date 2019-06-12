@@ -58,7 +58,7 @@ Note that in the example handler we just showed:
 	func (HelloWorldCLIHandler) Run(stdin io.ReadCloser, stdout io.WriteCloser, stderr io.WriteCloser, command ...string) cli.ExitCode {
 		fmt.Fprintln(stdout, "Hello world!")
 
-		return cli.ExitCodeOK
+		return cli.ExitCodeOK // <--------------- Exit Code used here.
 	}
 
 That is returned ‘cli.ExitCodeOK’.
