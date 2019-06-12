@@ -24,7 +24,7 @@ So, a ‘hello world’ cli.Handler might be:
 	type HelloWorldCLIHandler struc{}
 	
 	func (HelloWorldCLIHandler) Run(stdin io.ReadCloser, stdout io.WriteCloser, stderr io.WriteCloser, command ...string) cli.ExitCode {
-		fmt.Fprint(stdout, "Hello world!")
+		fmt.Fprintln(stdout, "Hello world!")
 
 		return cli.ExitCodeOK
 	}
