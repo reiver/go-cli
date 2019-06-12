@@ -38,8 +38,7 @@ And from your main() function, you might use do something such as:
 	func main() {
 		var handler cli.Handler = new(HelloWorldCLIHandler)
 
-		exitcode := handler.Run(os.Stdin, os.Stdout, os.Stderr, os.Args[1:]...)
-		os.Exit( int(exitcode.Code()) )
+		cli.RunAndThenExit(handler)
 	}
 
 Of course, if this is all you did, you would never use package cli.
