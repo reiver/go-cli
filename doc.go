@@ -111,7 +111,60 @@ So, for another example:
 		return cli.ExitCodeOK // <--------------- Exit Code used here.
 	}
 
-
 See the documentation on each of these ‘exit codes’ for when it is appropriate to use each of these.
+
+Stdout And Stderr
+
+In the initial example handler we showed:
+
+	import "github.com/reiver/go-cli"
+	
+	// ...
+	
+	type HelloWorldCLIHandler struc{}
+	
+	func (HelloWorldCLIHandler) Run(stdin io.ReadCloser, stdout io.WriteCloser, stderr io.WriteCloser, command ...string) cli.ExitCode {
+		fmt.Fprintln(stdout, "Hello world!") // <--------------- Stdout used here.
+
+		return cli.ExitCodeOK
+	}
+
+We used the ‘stdout’ parameter to output something to the user.
+
+We did that with the code:
+
+	fmt.Fprintln(stdout, "Hello world!")
+
+And in the second example handler we showed:
+
+	func (MyCLIHandler) Run(stdin io.ReadCloser, stdout io.WriteCloser, stderr io.WriteCloser, command ...string) cli.ExitCode {
+		if 1 > len(command) {
+			return cli.ExitCodeBadRequest
+		}
+
+		err := computeSomething()
+		if nil != err {
+			fmt.FPrintf(stderr, "ERROR: %s\n", err) // <--------------- Stderr used here.
+
+			return cli.ExitCodeInternalError
+		}
+		fmt.Fprintln(stdout, "Computation Complete!")
+
+		return cli.ExitCodeOK
+	}
+We used the ‘stderr’ to output an error message to the user.
+
+We did that with the code:
+
+	fmt.FPrintf(stderr, "ERROR: %s\n", err)
+
+‘stdout’, and ‘stdout’ are 2 different ways outputting to the user.
+
+‘stdout’ is for error messages.
+And ‘stdout’ is for everything else (that isn't an error message).
+
+Since both ‘stdout’, and ‘stdout’ are ‘io.Writer’, you can use funcs such as ‘fmt.Fprint()’, ‘fmt.Fprintf()’, and ‘fmt.Fprintln()’ to output to them.
+In addition to being able to just call each of their ‘.Write()’ methods directly.
+
 */
 package cli
