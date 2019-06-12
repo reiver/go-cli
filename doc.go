@@ -39,7 +39,7 @@ And from your main() function, you might use do something such as:
 		var handler cli.Handler = new(HelloWorldCLIHandler)
 
 		exitcode := handler.Run(os.Stdin, os.Stdout, os.Stderr, os.Args...)
-		os.Exit(exitcode.Code())
+		os.Exit( int(exitcode.Code()) )
 	}
 
 Of course, if this is all you did, you would never use package cli.
