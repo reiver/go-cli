@@ -112,6 +112,6 @@ So, for another example:
 	}
 
 
-See the documentation on each of these for when it is appropriate to use each of these.
+See the documentation on each of these ‘exit codes’ for when it is appropriate to use each of these.
 */
 package cli
