@@ -97,18 +97,18 @@ So, for another example:
 	
 	func (MyCLIHandler) Run(stdin io.ReadCloser, stdout io.WriteCloser, stderr io.WriteCloser, command ...string) cli.ExitCode {
 		if 1 > len(command) {
-			return cli.ExitCodeBadRequest
+			return cli.ExitCodeBadRequest // <--------------- Exit Code used here.
 		}
 
 		err := computeSomething()
 		if nil != err {
 			fmt.FPrintf(stderr, "ERROR: %s\n", err)
 
-			return cli.ExitCodeInternalError
+			return cli.ExitCodeInternalError // <--------------- Exit Code used here.
 		}
 		fmt.Fprintln(stdout, "Computation Complete!")
 
-		return cli.ExitCodeOK
+		return cli.ExitCodeOK // <--------------- Exit Code used here.
 	}
 
 
