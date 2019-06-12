@@ -87,6 +87,31 @@ Other ‘exit codes’ include:
 
 • cli.ExitCodeOSFileError
 
+So, for another example:
+
+	import "github.com/reiver/go-cli"
+	
+	// ...
+	
+	type MyCLIHandler struct{}
+	
+	func (MyCLIHandler) Run(stdin io.ReadCloser, stdout io.WriteCloser, stderr io.WriteCloser, command ...string) cli.ExitCode {
+		if 1 > len(command) {
+			return cli.ExitCodeBadRequest
+		}
+
+		err := computeSomething()
+		if nil != err {
+			fmt.FPrintf(stderr, "ERROR: %s\n", err)
+
+			return cli.ExitCodeInternalError
+		}
+		fmt.Fprintln(stdout, "Computation Complete!")
+
+		return cli.ExitCodeOK
+	}
+
+
 See the documentation on each of these for when it is appropriate to use each of these.
 */
 package cli
