@@ -61,7 +61,7 @@ const (
 	//
 	// Example
 	//
-	//	func run(stdin io.ReadCloser, stdout io.WriteCloser, stderr io.WriteCloser, args ...string) ExitCode {
+	//	func run(stdin io.ReadCloser, stdout io.WriteCloser, stderr io.WriteCloser, command ...string) ExitCode {
 	//	
 	//		// ...
 	//	
@@ -83,7 +83,7 @@ const (
 	//
 	// Example
 	//
-	//	func run(stdin io.ReadCloser, stdout io.WriteCloser, stderr io.WriteCloser, args ...string) ExitCode {
+	//	func run(stdin io.ReadCloser, stdout io.WriteCloser, stderr io.WriteCloser, command ...string) ExitCode {
 	//	
 	//		// ...
 	//	
@@ -106,7 +106,7 @@ const (
 	//
 	// Example
 	//
-	//	func run(stdin io.ReadCloser, stdout io.WriteCloser, stderr io.WriteCloser, args ...string) ExitCode {
+	//	func run(stdin io.ReadCloser, stdout io.WriteCloser, stderr io.WriteCloser, command ...string) ExitCode {
 	//	
 	//		// ...
 	//	
@@ -135,7 +135,7 @@ const (
 	//
 	// Example
 	//
-	//	func run(stdin io.ReadCloser, stdout io.WriteCloser, stderr io.WriteCloser, args ...string) ExitCode {
+	//	func run(stdin io.ReadCloser, stdout io.WriteCloser, stderr io.WriteCloser, command ...string) ExitCode {
 	//	
 	//		// ...
 	//	
@@ -163,7 +163,7 @@ const (
 	//
 	// Example
 	//
-	//	func run(stdin io.ReadCloser, stdout io.WriteCloser, stderr io.WriteCloser, args ...string) ExitCode {
+	//	func run(stdin io.ReadCloser, stdout io.WriteCloser, stderr io.WriteCloser, command ...string) ExitCode {
 	//	
 	//		// ...
 	//	
@@ -180,7 +180,7 @@ const (
 	//
 	// Example
 	//
-	//	func run(stdin io.ReadCloser, stdout io.WriteCloser, stderr io.WriteCloser, args ...string) ExitCode {
+	//	func run(stdin io.ReadCloser, stdout io.WriteCloser, stderr io.WriteCloser, command ...string) ExitCode {
 	//	
 	//		// ...
 	//	
@@ -218,7 +218,7 @@ const (
 	//
 	// Example
 	//
-	//	func run(stdin io.ReadCloser, stdout io.WriteCloser, stderr io.WriteCloser, args ...string) ExitCode {
+	//	func run(stdin io.ReadCloser, stdout io.WriteCloser, stderr io.WriteCloser, command ...string) ExitCode {
 	//	
 	//		// ...
 	//	
@@ -236,7 +236,7 @@ const (
 	//
 	// Example
 	//
-	//	func run(stdin io.ReadCloser, stdout io.WriteCloser, stderr io.WriteCloser, args ...string) ExitCode {
+	//	func run(stdin io.ReadCloser, stdout io.WriteCloser, stderr io.WriteCloser, command ...string) ExitCode {
 	//	
 	//		// ...
 	//	
