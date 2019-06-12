@@ -29,7 +29,7 @@ So, a ‘hello world’ cli.Handler might be:
 		return cli.ExitCodeOK
 	}
 
-And from your main() function, you might use do something such as:
+And from your main() function, you might do something such as:
 
 	import "github.com/reiver/go-cli"
 	
