@@ -81,6 +81,10 @@ Other ‘exit codes’ include:
 
 • cli.ExitCodeNoInput
 
+• cli.ExitCodeUserNotFound
+
+• cli.ExitCodeHostNotFound
+
 • cli.ExitCodeInternalError
 
 • cli.ExitCodeOSError

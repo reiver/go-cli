@@ -172,6 +172,58 @@ func (receiver ExitCode) String() string {
 	//	}
 	const ExitCodeNoInput = ExitCode(66)
 
+	// You would return this error — “user not found” — if the specified user does not exist.
+	//
+	// For example, you would return this “error” ‘exit code’ if:
+	//
+	//• a user for a remote login did not exist, or
+	//
+	//• an e-mail address (which represents a user) did not exist, or
+	//
+	//• etc.
+	//
+	// Example
+	//
+	//	func run(stdin io.ReadCloser, stdout io.WriteCloser, stderr io.WriteCloser, command ...string) ExitCode {
+	//	
+	//		// ...
+	//	
+	//		if nil != err {
+	//			return cli.ExitCodeUserNotFound
+	//		}
+	//	
+	//		// ...
+	//	
+	//	}
+	const ExitCodeUserNotFound = ExitCode(67)
+
+	// You would return this error — “host not found” — if the specified host does not exist.
+	//
+	// For example, you would return this “error” ‘exit code’ if:
+	//
+	//• the host for a remote login did not exist, or
+	//
+	//• the host of an e-mail address did not exist, or
+	//
+	//• the host in a URL did not exist, or
+	//
+	//• etc.
+	//
+	// Example
+	//
+	//	func run(stdin io.ReadCloser, stdout io.WriteCloser, stderr io.WriteCloser, command ...string) ExitCode {
+	//	
+	//		// ...
+	//	
+	//		if nil != err {
+	//			return cli.ExitCodeHostNotFound
+	//		}
+	//	
+	//		// ...
+	//	
+	//	}
+	const ExitCodeHostNotFound = ExitCode(68)
+
 	// You would return this error — “internal error” — if an internal error has been detected in your software.
 	//
 	// Example
