@@ -70,6 +70,8 @@ func (receiver ExitCode) String() string {
 	//	
 	//		return cli.ExitCodeOK
 	//	}
+	//
+	// On other systems, this is known as: EX_OK
 	const ExitCodeOK = ExitCode(0)
 
 	// This is a generic “error” ‘exit code’.
@@ -97,6 +99,8 @@ func (receiver ExitCode) String() string {
 	//		// ...
 	//	
 	//	}
+	//
+	// On other systems, this is known as: EX_ERROR
 	const ExitCodeError = ExitCode(1)
 
 	// You would return this error — “bad request” — if the request the user makes via the command line has an error in it.
@@ -124,6 +128,8 @@ func (receiver ExitCode) String() string {
 	//		// ...
 	//	
 	//	}
+	//
+	// On other systems, this is known as: EX_USAGE
 	const ExitCodeBadRequest = ExitCode(64)
 
 	// You would return this error — “bad input” — if the input data was bad in some way.
@@ -157,6 +163,8 @@ func (receiver ExitCode) String() string {
 	//		// ...
 	//	
 	//	}
+	//
+	// On other systems, this is known as: EX_DATAERR
 	const ExitCodeBadInput = ExitCode(65)
 
 	// You would return this error — “no input” — if the input data does not exist, or cannot be opened.
@@ -188,6 +196,8 @@ func (receiver ExitCode) String() string {
 	//		// ...
 	//	
 	//	}
+	//
+	// On other systems, this is known as: EX_NOINPUT
 	const ExitCodeNoInput = ExitCode(66)
 
 	// You would return this error — “no user” — if the specified user does not exist.
@@ -213,6 +223,8 @@ func (receiver ExitCode) String() string {
 	//		// ...
 	//	
 	//	}
+	//
+	// On other systems, this is known as: EX_NOUSER
 	const ExitCodeNoUser = ExitCode(67)
 
 	// You would return this error — “no host” — if the specified host does not exist.
@@ -240,6 +252,8 @@ func (receiver ExitCode) String() string {
 	//		// ...
 	//	
 	//	}
+	//
+	// On other systems, this is known as: EX_NOHOST
 	const ExitCodeNoHost = ExitCode(68)
 
 	// You would return this error — “unavailable” — if something is Unavailable.
@@ -266,6 +280,8 @@ func (receiver ExitCode) String() string {
 	//		// ...
 	//	
 	//	}
+	//
+	// On other systems, this is known as: EX_UNAVAILABLE
 	const ExitCodeUnavailable = ExitCode(69)
 
 	// You would return this error — “internal error” — if an internal error has been detected in your software.
@@ -283,6 +299,8 @@ func (receiver ExitCode) String() string {
 	//		// ...
 	//	
 	//	}
+	//
+	// On other systems, this is known as: EX_SOFTWARE
 	const ExitCodeInternalError = ExitCode(70)
 
 	// You would return this error — “OS error” — if an error with the operating system (OS) has been detected by your software.
@@ -321,6 +339,8 @@ func (receiver ExitCode) String() string {
 	//		// ...
 	//	
 	//	}
+	//
+	// On other systems, this is known as: EX_OSERR
 	const ExitCodeOSError = ExitCode(71)
 
 	// You would return this error — “OS file error” — if an operating system (OS) file that you expect to be there
@@ -339,8 +359,27 @@ func (receiver ExitCode) String() string {
 	//		// ...
 	//	
 	//	}
+	//
+	// On other systems, this is known as: EX_OSFILE
 	const ExitCodeOSFileError = ExitCode(72)
 
+	// You would return this error — “no output” — if a user specified output file cannot be created.
+	//
+	// Example
+	//
+	//	func run(stdin io.ReadCloser, stdout io.WriteCloser, stderr io.WriteCloser, command ...string) ExitCode {
+	//	
+	//		// ...
+	//	
+	//		if nil != err {
+	//			return cli.ExitCodeIOError
+	//		}
+	//	
+	//		// ...
+	//	
+	//	}
+	//
+	// On other systems, this is known as: EX_CANTCREAT
 	const ExitCodeNoOutput = ExitCode(73)
 
 	// You would return this error — “I/O error” — if an error occurred when doing some input, or output on a file.
@@ -358,12 +397,92 @@ func (receiver ExitCode) String() string {
 	//		// ...
 	//	
 	//	}
+	//
+	// On other systems, this is known as: EX_IOERR
 	const ExitCodeIOError = ExitCode(74)
 
+	// You would return this error — “temporary failure” — if a temporary failture occurred.
+	// A temporary failure is not really an error.
+	//
+	// Example
+	//
+	//	func run(stdin io.ReadCloser, stdout io.WriteCloser, stderr io.WriteCloser, command ...string) ExitCode {
+	//	
+	//		// ...
+	//	
+	//		if nil != err {
+	//			return cli.ExitCodeTemporaryFailure
+	//		}
+	//	
+	//		// ...
+	//	
+	//	}
+	//
+	// On other systems, this is known as: EX_TEMPFAIL
 	const ExitCodeTemporaryFailure = ExitCode(75)
 
+	// You would return this error — “protocol error” — if a remote system returned something that is not possible
+	// according to a protocol exchange.
+	//
+	// Example
+	//
+	//	func run(stdin io.ReadCloser, stdout io.WriteCloser, stderr io.WriteCloser, command ...string) ExitCode {
+	//	
+	//		// ...
+	//	
+	//		if nil != err {
+	//			return cli.ExitCodeProtocolError
+	//		}
+	//	
+	//		// ...
+	//	
+	//	}
+	//
+	// On other systems, this is known as: EX_PROTOCOL
 	const ExitCodeProtocolError = ExitCode(76)
 
+	// You would return this error — “unauthorized” — if there is something trying to be done for which
+	// you are unauthorized because you have insufficient permissions to do whatever you want to do.
+	//
+	// Note that this is not meant to be used for file system permissions. Either cli.NoInput, or cli.NoOutput
+	// should be used for those instead.
+	//
+	// Example
+	//
+	//	func run(stdin io.ReadCloser, stdout io.WriteCloser, stderr io.WriteCloser, command ...string) ExitCode {
+	//	
+	//		// ...
+	//	
+	//		if nil != err {
+	//			return cli.ExitCodeUnauthorized
+	//		}
+	//	
+	//		// ...
+	//	
+	//	}
+	//
+	// On other systems, this is known as: EX_NOPERM
 	const ExitCodeUnauthorized = ExitCode(77)
 
+	// You would return this error — “bad configuration” — if a bad configuration is encountered.
+	// Perhaps something is unconfigured. Perhaps something is misconfigured.
+	//
+	// This could be due to a configuration file; but doesn't have to be.
+	// For example, this could be a misconfigured, or unconfigured service of some kind.
+	//
+	// Example
+	//
+	//	func run(stdin io.ReadCloser, stdout io.WriteCloser, stderr io.WriteCloser, command ...string) ExitCode {
+	//	
+	//		// ...
+	//	
+	//		if nil != err {
+	//			return cli.ExitCodeBadConfiguration
+	//		}
+	//	
+	//		// ...
+	//	
+	//	}
+	//
+	// On other systems, this is known as: EX_CONFIG
 	const ExitCodeBadConfiguration = ExitCode(78)
