@@ -21,7 +21,7 @@ So, a ‘hello world’ cli.Handler might be:
 	
 	// ...
 	
-	type HelloWorldCLIHandler struc{}
+	type HelloWorldCLIHandler struct{}
 	
 	func (HelloWorldCLIHandler) Run(stdin io.ReadCloser, stdout io.WriteCloser, stderr io.WriteCloser, command ...string) cli.ExitCode {
 		fmt.Fprintln(stdout, "Hello world!")
@@ -137,7 +137,7 @@ In the initial example handler we showed:
 	
 	// ...
 	
-	type HelloWorldCLIHandler struc{}
+	type HelloWorldCLIHandler struct{}
 	
 	func (HelloWorldCLIHandler) Run(stdin io.ReadCloser, stdout io.WriteCloser, stderr io.WriteCloser, command ...string) cli.ExitCode {
 		fmt.Fprintln(stdout, "Hello world!") // <--------------- Stdout used here.
