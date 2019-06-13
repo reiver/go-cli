@@ -93,6 +93,8 @@ Other ‘exit codes’ include:
 
 • cli.ExitCodeOSFileError
 
+• cli.ExitCodeIOError
+
 So, for another example:
 
 	import "github.com/reiver/go-cli"

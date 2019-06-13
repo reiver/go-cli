@@ -84,6 +84,10 @@ func TestExitCodeString(t *testing.T) {
 			ExitCode: ExitCodeOSFileError,
 			Expected: "OS File Error",
 		},
+		{
+			ExitCode: ExitCodeIOError,
+			Expected: "I/O Error",
+		},
 	}
 
 	for testNumber, test := range tests {

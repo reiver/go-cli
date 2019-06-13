@@ -38,6 +38,8 @@ func (receiver ExitCode) String() string {
 		return "OS Error"
 	case ExitCodeOSFileError:
 		return "OS File Error"
+	case ExitCodeIOError:
+		return "I/O Error"
 
 	default:
 		return fmt.Sprintf("Unrecognized Error: ‘%d’", receiver)
@@ -328,3 +330,20 @@ func (receiver ExitCode) String() string {
 	//	
 	//	}
 	const ExitCodeOSFileError = ExitCode(72)
+
+	// You would return this error — “I/O error” — if an error occurred when doing some input, or output on a file.
+	//
+	// Example
+	//
+	//	func run(stdin io.ReadCloser, stdout io.WriteCloser, stderr io.WriteCloser, command ...string) ExitCode {
+	//	
+	//		// ...
+	//	
+	//		if nil != err {
+	//			return cli.ExitCodeIOError
+	//		}
+	//	
+	//		// ...
+	//	
+	//	}
+	const ExitCodeIOError = ExitCode(74)
