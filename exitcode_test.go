@@ -56,8 +56,8 @@ func TestExitCodeString(t *testing.T) {
 			Expected: "Bad Input",
 		},
 		{
-			ExitCode: ExitCodeNoInput,
-			Expected: "No Input",
+			ExitCode: ExitCodeInputNotFound,
+			Expected: "Input Not Found",
 		},
 
 		{

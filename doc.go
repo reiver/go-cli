@@ -79,7 +79,7 @@ Other ‘exit codes’ include:
 
 • cli.ExitCodeBadInput
 
-• cli.ExitCodeNoInput
+• cli.ExitCodeInputNotFound
 
 • cli.ExitCodeUserNotFound
 

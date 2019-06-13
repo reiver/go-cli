@@ -24,8 +24,8 @@ func (receiver ExitCode) String() string {
 		return "Bad Request"
 	case ExitCodeBadInput:
 		return "Bad Input"
-	case ExitCodeNoInput:
-		return "No Input"
+	case ExitCodeInputNotFound:
+		return "Input Not Found"
 	case ExitCodeInternalError:
 		return "Internal Error"
 	case ExitCodeOSError:
@@ -123,7 +123,7 @@ func (receiver ExitCode) String() string {
 	// NOTE that if the input problem relates to an operating system (OS) file (such as “/etc/os-release”, “/etc/passwd”, “/var/run/utmp”, etc)
 	// then cli.ExitCodeOSFileError should be returned instead of cli.ExitCodeBadInput.
 	//
-	// Also NOTE that if the input user file does not exist, or cannot be opened, then cli.ExitCodeNoInput
+	// Also NOTE that if the input user file does not exist, or cannot be opened, then cli.ExitCodeInputNotFound
 	// should be returned instead of cli.ExitCodeBadInput.
 	//
 	// Example
@@ -152,10 +152,10 @@ func (receiver ExitCode) String() string {
 	//• etc.
 	//
 	// NOTE that if the input problem relates to an operating system (OS) file (such as “/etc/os-release”, “/etc/passwd”, “/var/run/utmp”, etc)
-	// then cli.ExitCodeOSFileError should be returned instead of cli.ExitCodeNoInput.
+	// then cli.ExitCodeOSFileError should be returned instead of cli.ExitCodeInputNotFound.
 	//
 	// Also NOTE that if the input user file (exists, and can indeed be opened, bu) has a syntax error,
-	// then cli.ExitCodeBadInput should be returned instead of cli.ExitCodeNoInput.
+	// then cli.ExitCodeBadInput should be returned instead of cli.ExitCodeInputNotFound.
 	//
 	// Example
 	//
@@ -164,13 +164,13 @@ func (receiver ExitCode) String() string {
 	//		// ...
 	//	
 	//		if nil != err {
-	//			return cli.ExitCodeNoInput
+	//			return cli.ExitCodeInputNotFound
 	//		}
 	//	
 	//		// ...
 	//	
 	//	}
-	const ExitCodeNoInput = ExitCode(66)
+	const ExitCodeInputNotFound = ExitCode(66)
 
 	// You would return this error — “user not found” — if the specified user does not exist.
 	//
