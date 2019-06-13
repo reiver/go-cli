@@ -40,6 +40,8 @@ func (receiver ExitCode) String() string {
 		return "OS File Error"
 	case ExitCodeIOError:
 		return "I/O Error"
+	case ExitCodeUnauthorized:
+		return "Unauthorized"
 
 	default:
 		return fmt.Sprintf("Unrecognized Error: ‘%d’", receiver)
@@ -347,3 +349,5 @@ func (receiver ExitCode) String() string {
 	//	
 	//	}
 	const ExitCodeIOError = ExitCode(74)
+
+	const ExitCodeUnauthorized = ExitCode(77)

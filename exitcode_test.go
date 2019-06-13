@@ -88,6 +88,10 @@ func TestExitCodeString(t *testing.T) {
 			ExitCode: ExitCodeIOError,
 			Expected: "I/O Error",
 		},
+		{
+			ExitCode: ExitCodeUnauthorized,
+			Expected: "Unauthorized",
+		},
 	}
 
 	for testNumber, test := range tests {

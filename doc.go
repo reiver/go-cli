@@ -95,6 +95,8 @@ Other ‘exit codes’ include:
 
 • cli.ExitCodeIOError
 
+• cli.ExitCodeUnauthorized
+
 So, for another example:
 
 	import "github.com/reiver/go-cli"
