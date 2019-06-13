@@ -1,6 +1,7 @@
 package cli
 
 import (
+	"io"
 	"os"
 )
 
@@ -23,6 +24,12 @@ import (
 //	exticode := handler.Run(os.Stdin, os.Stdout, os.Stderr, os.Args[1:]...)
 func Run(handler Handler) ExitCode {
 	return handler.Run(os.Stdin, os.Stdout, os.Stderr, os.Args[1:]...)
+}
+
+// RunFunc is similar to Run, expect instead of taking a cli.Handler, it takes a func
+// with the same signature as the Run() method in the cli.Handler.
+func RunFunc(fn func(io.ReadCloser, io.WriteCloser, io.WriteCloser, ...string) ExitCode) ExitCode {
+	return Run(HandlerFunc(fn))
 }
 
 // RunAndThenExit runs a cli.Handler, and then exits using the ‘exit code’ returned from the handler's Run() method.
