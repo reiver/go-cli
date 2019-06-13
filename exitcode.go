@@ -39,19 +39,6 @@ func (receiver ExitCode) String() string {
 	}
 }
 
-func (receiver ExitCode) Error(stderr io.WriteCloser) ExitCode {
-	return receiver.Errorf(stderr, "%s", receiver.String())
-}
-
-func (receiver ExitCode) Errorf(stderr io.WriteCloser, format string, a ...interface{}) ExitCode {
-	fmt.Fprintf(stderr, format, a...)
-	return receiver
-}
-
-func (receiver ExitCode) Errorln(stderr io.WriteCloser) ExitCode {
-	return receiver.Errorf(stderr, "%s\n", receiver.String())
-}
-
 const (
 	// This is the “success” or “OK” ‘exit code’.
 	//
