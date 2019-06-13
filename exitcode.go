@@ -2,7 +2,6 @@ package cli
 
 import (
 	"fmt"
-	"io"
 )
 
 type ExitCode uint8
