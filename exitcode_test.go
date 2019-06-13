@@ -85,12 +85,28 @@ func TestExitCodeString(t *testing.T) {
 			Expected: "OS File Error",
 		},
 		{
+			ExitCode: ExitCodeNoOutput,
+			Expected: "No Output",
+		},
+		{
 			ExitCode: ExitCodeIOError,
 			Expected: "I/O Error",
 		},
 		{
+			ExitCode: ExitCodeTemporaryFailure,
+			Expected: "Temporary Failure",
+		},
+		{
+			ExitCode: ExitCodeProtocolError,
+			Expected: "Protocol Error",
+		},
+		{
 			ExitCode: ExitCodeUnauthorized,
 			Expected: "Unauthorized",
+		},
+		{
+			ExitCode: ExitCodeBadConfiguration,
+			Expected: "Bad Configuration",
 		},
 	}
 

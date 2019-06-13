@@ -38,10 +38,18 @@ func (receiver ExitCode) String() string {
 		return "OS Error"
 	case ExitCodeOSFileError:
 		return "OS File Error"
+	case ExitCodeNoOutput:
+		return "No Output"
 	case ExitCodeIOError:
 		return "I/O Error"
+	case ExitCodeTemporaryFailure:
+		return "Temporary Failure"
+	case ExitCodeProtocolError:
+		return "Protocol Error"
 	case ExitCodeUnauthorized:
 		return "Unauthorized"
+	case ExitCodeBadConfiguration:
+		return "Bad Configuration"
 
 	default:
 		return fmt.Sprintf("Unrecognized Error: ‘%d’", receiver)
@@ -333,6 +341,8 @@ func (receiver ExitCode) String() string {
 	//	}
 	const ExitCodeOSFileError = ExitCode(72)
 
+	const ExitCodeNoOutput = ExitCode(73)
+
 	// You would return this error — “I/O error” — if an error occurred when doing some input, or output on a file.
 	//
 	// Example
@@ -350,4 +360,10 @@ func (receiver ExitCode) String() string {
 	//	}
 	const ExitCodeIOError = ExitCode(74)
 
+	const ExitCodeTemporaryFailure = ExitCode(75)
+
+	const ExitCodeProtocolError = ExitCode(76)
+
 	const ExitCodeUnauthorized = ExitCode(77)
+
+	const ExitCodeBadConfiguration = ExitCode(78)
