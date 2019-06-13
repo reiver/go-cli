@@ -1,5 +1,9 @@
 package cli
 
+import (
+	"io"
+)
+
 // Handle registers a new handler for a command.
 //
 // Example
@@ -42,7 +46,7 @@ func (receiver *Mux) Handle(handler Handler, command ...string) error {
 	return nil
 }
 
-func (receiver *Mux) HandleFunc(fn HandlerFunc, command ...string) error {
+func (receiver *Mux) HandleFunc(fn func(io.ReadCloser, io.WriteCloser, io.WriteCloser, ...string)ExitCode, command ...string) error {
 	var handler Handler = HandlerFunc(fn)
 
 	return receiver.Handle(handler, command...)
