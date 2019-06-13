@@ -1,6 +1,7 @@
 package cli_test
 
 import (
+	"bytes"
 	"io"
 )
 
@@ -31,3 +32,21 @@ func (nopWriteCloser) Close() error {
 func (nopWriteCloser) Write(data []byte) (n int, err error) {
 	return 0, nil
 }
+
+
+type writeCloseBuffer struct {
+	buffer bytes.Buffer
+}
+
+func (writeCloseBuffer) Close() error {
+	return nil
+}
+
+func (receiver writeCloseBuffer) String() string {
+	return receiver.buffer.String()
+}
+
+func (receiver *writeCloseBuffer) Write(p []byte) (n int, err error) {
+	return receiver.buffer.Write(p)
+}
+
