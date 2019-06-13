@@ -26,6 +26,10 @@ func (receiver ExitCode) String() string {
 		return "Bad Input"
 	case ExitCodeInputNotFound:
 		return "Input Not Found"
+	case ExitCodeUserNotFound:
+		return "User Not Found"
+	case ExitCodeHostNotFound:
+		return "Host Not Found"
 	case ExitCodeInternalError:
 		return "Internal Error"
 	case ExitCodeOSError:
