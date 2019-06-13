@@ -84,10 +84,14 @@ func (receiver ExitCode) String() string {
 	// You would return this error — “bad request” — if the request the user makes via the command line has an error in it.
 	//
 	// For example, you would return this “error” ‘exit code’ if your software is used incorrectly by the user by:
-	//	• providing the wrong number or command line arguments, or
-	//	• providing a bag flag, or
-	//	• providing bad syntax with a flag, or
-	//	• etc.
+	//
+	//• providing the wrong number or command line arguments, or
+	//
+	//• providing a bag flag, or
+	//
+	//• providing bad syntax with a flag, or
+	//
+	//• etc.
 	//
 	// Example
 	//
@@ -107,10 +111,14 @@ func (receiver ExitCode) String() string {
 	// You would return this error — “bad input” — if the input data was bad in some way.
 	//
 	// For example, you would return this “error” ‘exit code’ if the bad input data was given to your software via:
-	//	• Stdin (i.e., os.Stdin), or
-	//	• a user file (ex: has a syntax error), or
-	//	• input the user types in (maybe via a form), or
-	//	• etc.
+	//
+	//• Stdin (i.e., os.Stdin), or
+	//
+	//• a user file (ex: has a syntax error), or
+	//
+	//• input the user types in (maybe via a form), or
+	//
+	//• etc.
 	//
 	// NOTE that if the input problem relates to an operating system (OS) file (such as “/etc/os-release”, “/etc/passwd”, “/var/run/utmp”, etc)
 	// then cli.ExitCodeOSFileError should be returned instead of cli.ExitCodeBadInput.
@@ -136,9 +144,12 @@ func (receiver ExitCode) String() string {
 	// You would return this error — “no input” — if the input data does not exist, or cannot be opened.
 	//
 	// For example, you would return this “error” ‘exit code’ if:
-	//	• a user file that your software expected did not exist, or
-	//	• a user file (existed) by could not be opened, or
-	//	• etc.
+	//
+	//• a user file that your software expected did not exist, or
+	//
+	//• a user file (existed) by could not be opened, or
+	//
+	//• etc.
 	//
 	// NOTE that if the input problem relates to an operating system (OS) file (such as “/etc/os-release”, “/etc/passwd”, “/var/run/utmp”, etc)
 	// then cli.ExitCodeOSFileError should be returned instead of cli.ExitCodeNoInput.
