@@ -95,7 +95,13 @@ Other ‘exit codes’ include:
 
 • cli.ExitCodeIOError
 
+• cli.ExitCodeTemporaryFailure
+
+• cli.ExitCodeProtocolError
+
 • cli.ExitCodeUnauthorized
+
+• cli.ExitCodeBadConfiguration
 
 So, for another example:
 
