@@ -56,16 +56,16 @@ func TestExitCodeString(t *testing.T) {
 			Expected: "Bad Input",
 		},
 		{
-			ExitCode: ExitCodeInputNotFound,
-			Expected: "Input Not Found",
+			ExitCode: ExitCodeNoInput,
+			Expected: "No Input",
 		},
 		{
-			ExitCode: ExitCodeUserNotFound,
-			Expected: "User Not Found",
+			ExitCode: ExitCodeNoUser,
+			Expected: "No User",
 		},
 		{
-			ExitCode: ExitCodeHostNotFound,
-			Expected: "Host Not Found",
+			ExitCode: ExitCodeNoHost,
+			Expected: "No Host",
 		},
 
 		{
