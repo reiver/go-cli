@@ -28,7 +28,7 @@ func Run(handler Handler) ExitCode {
 
 // RunFunc is similar to Run, expect instead of taking a cli.Handler, it takes a func
 // with the same signature as the Run() method in the cli.Handler.
-func RunFunc(fn func(io.ReadCloser, io.WriteCloser, io.WriteCloser, ...string) ExitCode) ExitCode {
+func RunFunc(fn func(io.ReadCloser, io.WriteCloser, io.WriteCloser, ...string)ExitCode) ExitCode {
 	return Run(HandlerFunc(fn))
 }
 
@@ -53,4 +53,10 @@ func RunFunc(fn func(io.ReadCloser, io.WriteCloser, io.WriteCloser, ...string) E
 //	os.Exit( int(exitcode) )
 func RunAndThenExit(handler Handler) {
 	os.Exit( int( Run(handler) ) )
+}
+
+// RunFuncAndThenExit is similar to RunAndThenExit, expect instead of taking a cli.Handler, it takes a func
+// with the same signature as the Run() method in the cli.Handler.
+func RunFuncAndThenExit(fn func(io.ReadCloser, io.WriteCloser, io.WriteCloser, ...string)ExitCode) {
+	RunAndThenExit(HandlerFunc(fn))
 }
