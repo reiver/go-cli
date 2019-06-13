@@ -30,6 +30,8 @@ func (receiver ExitCode) String() string {
 		return "No User"
 	case ExitCodeNoHost:
 		return "No Host"
+	case ExitCodeUnavailable:
+		return "Unavailable"
 	case ExitCodeInternalError:
 		return "Internal Error"
 	case ExitCodeOSError:
@@ -227,6 +229,32 @@ func (receiver ExitCode) String() string {
 	//	
 	//	}
 	const ExitCodeNoHost = ExitCode(68)
+
+	// You would return this error — “unavailable” — if something is Unavailable.
+	//
+	// For example, you would return this “error” ‘exit code’ if:
+	//
+	//• a service is unavailable, or
+	//
+	//• etc.
+	//
+	// You can also use this as a catchall “error” ‘exit code’ when something you wanted does not work,
+	// and you don't know why.
+	//
+	// Example
+	//
+	//	func run(stdin io.ReadCloser, stdout io.WriteCloser, stderr io.WriteCloser, command ...string) ExitCode {
+	//	
+	//		// ...
+	//	
+	//		if nil != err {
+	//			return cli.ExitCodeUnavailable
+	//		}
+	//	
+	//		// ...
+	//	
+	//	}
+	const ExitCodeUnavailable = ExitCode(69)
 
 	// You would return this error — “internal error” — if an internal error has been detected in your software.
 	//

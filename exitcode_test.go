@@ -67,6 +67,10 @@ func TestExitCodeString(t *testing.T) {
 			ExitCode: ExitCodeNoHost,
 			Expected: "No Host",
 		},
+		{
+			ExitCode: ExitCodeUnavailable,
+			Expected: "Unavailable",
+		},
 
 		{
 			ExitCode: ExitCodeInternalError,
