@@ -60,7 +60,7 @@ And if you then typed:
 It would autocomplete to:
 	bzdiff
 
-(And not output any candidates, since it was able to do a full autocomplete.)
+(And note that it did not output any candidates in this case, since it was able to do a full autocomplete.)
 
 Autocomplete Flags
 
