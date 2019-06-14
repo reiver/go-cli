@@ -160,5 +160,69 @@ The bash shell would then fully autocomplete it to:
 Again, that is a powerful feature for the end user!
 And creates a better user experience (UX) for the command line interface!
 
+How Autocompletion Support Works
+
+Some people add autocomplete support to their programs, they create a separate (often complex) shell script.
+(Maybe a bash shell script. Although not necessarily)
+
+This is NOT the way this package approaches this.
+
+This package takes the approach of having everything self-contained.
+And making it so the autocomplete support comes from the same program that is being autocompleted.
+
+There are 3 parts to get this to work.
+I.e., there are 3 tricks to this.
+
+The first part of this trick is to use ‘complete’.
+
+I.e., to put a command such as:
+
+	complete -C '/the/full/path/to/myprogram compgen' myprogram
+
+Into a file such as:
+
+• ~/.bashrc
+
+• ~/.bash_profile
+
+• ~/.bash_login
+
+• ~/.profile
+
+• ~/.zshrc
+
+• $XDG_CONFIG_HOME/fish/completions/
+
+• ~/.config/fish/completions/
+
+Where you put it can depend on the operating system (OS) you (or the end user) are on.
+And also what command line shell you (or the end user) are using.
+
+(Don't worry, this package provides tool to make that happen automagically.
+This description is being included as documentation for those curious about how it works.)
+
+But anyway, the second part of this trick is to make your program output data in a very specific format when it is called with the “compgen” command.
+
+(Note, there is nothing special about the “compgen” command. I had to pick way of triggering the program to output information for autocomplete.
+I chose to call it “compgen”.
+I could have called it almost anything.
+But (somewhat) arbitrarily called it “compgen”, because many bash scripts that do something like this make use of a program called “compgen”.
+I thought it might be helpful to use the same name.)
+
+The third part of the trick is for your program, when handling an autocomplete, to make use of these environment variables:
+
+• COMP_KEY
+
+• COMP_LINE
+
+• COMP_POINT
+
+• COMP_TYPE
+
+And based on what is in those environment variables, change (and possibly narrow) what you output as candidates for the autocompletion.
+
+(Again, don't worry, this package provides tool to make that happen automagically.
+This description is being included as documentation for those curious about how it works.)
+
 */
 package cliautocomplete
