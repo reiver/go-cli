@@ -30,15 +30,15 @@ Note that why all that was outputted, instead of autocompletion happening, is be
 Since there are many different programs that start with a “b”.
 And the bash shell doesn't know which one you wanted.
 
-And, for example, typing:
+OK, so what happens, for example, if we now typed the following at the bash shell:
 	ba[TAB][TAB]
 
-Will first cause the bash shell to partially autocomplete it to:
+Well, this will first cause the bash shell to partially autocomplete it to:
 	bas
 
 (I.e., adding an “s” after the “ba”.)
 
-And then output:
+And then output the candidates:
 	base32    base64    basename  bash      bashbug
 
 First note that all 5 of those candidate programs (“base32”, “base64”, “basename”, “bash”, “bashbug”) were in our previous output of candidate programs.
