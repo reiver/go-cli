@@ -62,16 +62,18 @@ It would autocomplete to:
 
 (And note that it did not output any candidates in this case, since it was able to do a full autocomplete.)
 
-Autocomplete Flags
-
-That type of autocomplete that we went over is automatic in command line shells that support autocomplete, such as the bash shell.
+This type of autocomplete of programs is automagic.
+Command line shells, such as the bash shell, have built-in support for it.
 
 I.e., your program does not need to do anything to support that syle of autocomplete.
 
-However, there is another kind of autocomplete that is very useful to the end user, but your program would have to do something extra
-(such as integrate the tools provided by this package) to make it work.
+However, the types of autocomplete (of flags, of commands, of subcommands, etc) is something your program needs to do something extra (such as integrate the tools provided by this package) to enable.
+But more on that a little later.
 
-But before going over that, let's describe what this other kind of autocomplete is like.
+Autocomplete Flags
+
+Let's now look at another type of autocomplte.
+The autocomplete of flags.
 
 Let's look at what happen if we were to type the following at the bash shell:
 	grep --[TAB][TAB]
