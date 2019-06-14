@@ -73,7 +73,7 @@ But more on that a little later.
 Autocomplete Flags
 
 Let's now look at another type of autocomplte.
-The autocomplete of flags.
+The autocompletion of flags.
 
 Let's look at what happen if we were to type the following at the bash shell:
 	grep --[TAB][TAB]
@@ -113,6 +113,52 @@ The bash shell would then autocomplete it to:
 
 (And not output any candidates, since it was able to do a full autocomplete.)
 
+Autocomplete Commands, Subcommands, Etc
+
+Let's now look at another type of autocomplte.
+The autocompletion of commands, subcommands, etc.
+
+Let's look at what happens if we were to type the following at the bash shell:
+	tar [TAB][TAB]
+
+The bash shell would respond by outputting the following candidate commands:
+	A  c  d  r  t  u  x
+
+The idea of a program supporting commands, subcommands, etc is an old one.
+
+And although it is definitely not the first program to support commands, subcommands, etc,
+maybe the most popular program today to support commands, subcommands, etc is: git.
+
+So, let's look at what happens if we were to type the following at the bash shell:
+	git [TAB][TAB]
+
+The bash shell would then output the candidate commands:
+	add                  cherry-pick          fsck                 mergetool            replace              submodule 
+	am                   clean                gc                   mv                   request-pull         subtree 
+	annotate             clone                get-tar-commit-id    name-rev             reset                tag 
+	apply                commit               grep                 notes                revert               verify-commit 
+	archive              config               help                 pull                 rm                   whatchanged 
+	bisect               describe             imap-send            push                 shortlog             worktree 
+	blame                diff                 init                 rebase               show                 
+	branch               difftool             instaweb             reflog               show-branch          
+	bundle               fetch                interpret-trailers   relink               stage                
+	checkout             filter-branch        log                  remote               stash                
+	cherry               format-patch         merge                repack               status               
+
+And if we then typed the following at the bash shell:
+	git a[TAB][TAB]
+
+The bash shell would then output the candidate:
+	add        am         annotate   apply      archive
+
+If we then typed the following at the bash shell:
+	git ap[TAB][TAB]
+
+The bash shell would then fully autocomplete it to:
+	git apply
+
+Again, that is a powerful feature for the end user!
+And creates a better user experience (UX) for the command line interface!
 
 */
 package cliautocomplete
