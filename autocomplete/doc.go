@@ -1,6 +1,6 @@
 /*
-Package cliautocomplete provide tools for to make it so program can support autocomplete in various command line shells, such as:
-bash. zsh, fish, etc.
+Package cliautocomplete provide tools to make it so your program can support autocomplete (of flags, commands, subcommands, etc)
+in various command line shells, such as: bash. zsh, fish, etc.
 
 Autocomplete
 
