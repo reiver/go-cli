@@ -10,15 +10,15 @@ import (
 )
 
 type comp struct {
-	COMP_LINE  optstring.Type
-	COMP_POINT optint64.Type
-	COMP_TYPE  optstring.Type
-	COMP_KEY   optstring.Type
+	LINE  optstring.Type
+	POINT optint64.Type
+	TYPE  optstring.Type
+	KEY   optstring.Type
 }
 
 // It is expected that you effectively call this with:
 //
-//	result := compParse(os.Environ())
+//	COMP := compParse(os.Environ())
 //
 // The input to this is a []string, and will contain the environment variables.
 //
@@ -51,12 +51,12 @@ type comp struct {
 // The are the environment variables relevant for autocomplete.
 func compParse(data []string) comp {
 
-	const COMP_LINE  = "COMP_LINE="
-	const COMP_POINT = "COMP_POINT="
-	const COMP_TYPE  = "COMP_TYPE="
-	const COMP_KEY   = "COMP_KEY="
+	const COMP_LINE_  = "COMP_LINE="
+	const COMP_POINT_ = "COMP_POINT="
+	const COMP_TYPE_  = "COMP_TYPE="
+	const COMP_KEY_   = "COMP_KEY="
 
-	var result comp
+	var COMP comp
 
 	var found_COMP_LINE  bool
 	var found_COMP_POINT bool
@@ -65,12 +65,12 @@ func compParse(data []string) comp {
 
 	for _, datum := range data {
 		switch {
-		case strings.HasPrefix(datum, COMP_LINE):
-			result.COMP_LINE = optstring.Some(datum[len(COMP_LINE):])
+		case strings.HasPrefix(datum, COMP_LINE_):
+			COMP.LINE = optstring.Some(datum[len(COMP_LINE_):])
 			found_COMP_LINE = true
 
-		case strings.HasPrefix(datum, COMP_POINT):
-			s := datum[len(COMP_POINT):]
+		case strings.HasPrefix(datum, COMP_POINT_):
+			s := datum[len(COMP_POINT_):]
 
 			i64, err := strconv.ParseInt(s, 10, 64)
 			if nil != err {
@@ -78,17 +78,17 @@ func compParse(data []string) comp {
 				continue
 			}
 
-			result.COMP_POINT = optint64.Some(i64)
+			COMP.POINT = optint64.Some(i64)
 
 			found_COMP_POINT = true
 
-		case strings.HasPrefix(datum, COMP_TYPE):
-			result.COMP_TYPE = optstring.Some(datum[len(COMP_TYPE):])
+		case strings.HasPrefix(datum, COMP_TYPE_):
+			COMP.TYPE = optstring.Some(datum[len(COMP_TYPE_):])
 
 			found_COMP_TYPE = true
 
-		case strings.HasPrefix(datum, COMP_KEY):
-			result.COMP_KEY  = optstring.Some(datum[len(COMP_KEY):])
+		case strings.HasPrefix(datum, COMP_KEY_):
+			COMP.KEY  = optstring.Some(datum[len(COMP_KEY_):])
 
 			found_COMP_KEY = true
 		}
@@ -99,5 +99,5 @@ func compParse(data []string) comp {
 		}
 	}
 
-	return result
+	return COMP
 }

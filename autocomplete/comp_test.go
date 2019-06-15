@@ -132,7 +132,7 @@ func TestCompParse(t *testing.T) {
 		{ // 14
 			Data: []string{"COMP_POINT123"},
 			Expected_COMP_LINE: optstring.None(),
-			Expected_COMP_POINT: optint64.Some(123),
+			Expected_COMP_POINT: optint64.None(),
 			Expected_COMP_TYPE: optstring.None(),
 			Expected_COMP_KEY:  optstring.None(),
 		},
@@ -185,23 +185,30 @@ func TestCompParse(t *testing.T) {
 
 	for testNumber, test := range tests {
 
-		result := compParse(test.Data)
+		COMP := compParse(test.Data)
 
-		if expected, actual := test.Expected_COMP_LINE, result.COMP_LINE; expected != actual {
+		if expected, actual := test.Expected_COMP_LINE, COMP.LINE; expected != actual {
 			t.Errorf("For test #%d (COMP_LINE)...", testNumber)
 			t.Errorf("\tEXPECTED: %#v", expected)
 			t.Errorf("\tACTUAL:   %#v", actual)
 			continue
 		}
 
-		if expected, actual := test.Expected_COMP_TYPE, result.COMP_TYPE; expected != actual {
+		if expected, actual := test.Expected_COMP_POINT, COMP.POINT; expected != actual {
+			t.Errorf("For test #%d (COMP_POINT)...", testNumber)
+			t.Errorf("\tEXPECTED: %#v", expected)
+			t.Errorf("\tACTUAL:   %#v", actual)
+			continue
+		}
+
+		if expected, actual := test.Expected_COMP_TYPE, COMP.TYPE; expected != actual {
 			t.Errorf("For test #%d (COMP_TYPE)...", testNumber)
 			t.Errorf("\tEXPECTED: %#v", expected)
 			t.Errorf("\tACTUAL:   %#v", actual)
 			continue
 		}
 
-		if expected, actual := test.Expected_COMP_KEY, result.COMP_KEY; expected != actual {
+		if expected, actual := test.Expected_COMP_KEY, COMP.KEY; expected != actual {
 			t.Errorf("For test #%d (COMP_KEY)...", testNumber)
 			t.Errorf("\tEXPECTED: %#v", expected)
 			t.Errorf("\tACTUAL:   %#v", actual)
