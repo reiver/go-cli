@@ -34,7 +34,7 @@ Here is a basic example that uses a ‘map[string]string’ as the target for cl
 	
 	remainingTokens, err := cliflag.Parse(&target, tokens)
 
-Example Map String String
+Example Map String Interface
 
 Here is a basic example that uses a ‘map[string]interface{}’ as the target for cliflag.Parse():…
 
