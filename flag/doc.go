@@ -1,5 +1,5 @@
 /*
-Package cliflag provides tools for parsing a single token from the command line, and interpreting as a command line flag.
+Package cliflag provides tools for parsing a single token from the command line, and interpreting it as a command line flag.
 
 For most people, it would make more sense to use the ‘cliflags’ (with an ‘s’ at the end) package, rather than this package ‘cliflag’.
 
