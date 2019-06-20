@@ -37,8 +37,8 @@ import (
 //	
 //	if nil != err {
 //		switch casted := err.(type) {
-//		case cliflag.NotFlag:
-//			fmt.Fprintf(os.Stderr, "SYNTAX ERROR: %q is not a flag.\n", casted.Token())
+//		case cliflag.EndOfFlags:
+//			fmt.Fprintf(os.Stderr, "END OF FLAGS: %q is not a flag.\n", casted.Token())
 //			return
 //		default:
 //			fmt.Fprintf(os.Stderr, "ERROR: %s\n", err)
@@ -81,7 +81,7 @@ func parse(storer Storer, tokens ...string) ([]string, error) {
 	head, tail := tokens[0], tokens[1:]
 
 	if !isFlag(head) {
-		return tail, internalNotFlag{token:head}
+		return tokens, internalEndOfFlags{token:head}
 	}
 
 	{
@@ -90,7 +90,7 @@ func parse(storer Storer, tokens ...string) ([]string, error) {
 
 		switch {
 		default:
-			return tail, internalNotFlag{token:head}
+			return tokens, internalEndOfFlags{token:head}
 
 		// --name=value
 		// --name:value
