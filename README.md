@@ -78,7 +78,7 @@ func init() {
 
 // ...
 
-// This handler will run with this program is called with with sub-command argument “banana”:
+// This handler will run with this program is called with with sub-command argument “cherry”:
 //
 //	myprogram banana
 //
