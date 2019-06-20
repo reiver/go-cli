@@ -2,9 +2,13 @@ package cliflag
 
 // KeyValue represents a single key-value pair.
 //
-// Although you can call cliflag.Parse() with a ‘&map[string]string’, or a ‘&map[string]interface{}’
-// as the target, &cliflag.KeyValue exist as convenient alternate target that captures a single
-// key-value pair.
+// It stores a single key-value pair.
+//
+// If more than one key-value pair is attempted to be stored in it, it will return an error.
+//
+// You would use a ‘&cliflag.KeyValue’ (i.e., a pointer to a cliflag.KeyValue) with cliflag.Parse(),
+// as the target, if you didn't want to use a ‘&map[string]string’, a ‘&map[string]interface{}’, or
+// something that fits the ‘cliflag.Storer’ interface, as the target to cliflag.Parse().
 //
 // Example
 //
@@ -52,7 +56,7 @@ func (receiver *KeyValue) Store(key string, value interface{}) error {
 	return nil
 }
 
-// Unwrap lets you get the key-value pair out of the cliflag.KeyValue.
+// Unwrap lets you get the ‘key’, and the ‘value’ of the key-value pair out of the cliflag.KeyValue.
 //
 // Note that if the cliflag.KeyValue has not been loaded, then it returns an error.
 //
