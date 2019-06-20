@@ -8,7 +8,7 @@ rather than the "github.com/reiver/go-cli/‘cliflag" package.)
 
 This package is exposed for those wishing for a more low-level API.
 
-Example
+Basic Example
 
 Here is a basic example that uses ‘cliflag.KeyValue’ as the target for cliflag.Parse():…
 
@@ -22,7 +22,7 @@ Here is a basic example that uses ‘cliflag.KeyValue’ as the target for clifl
 	
 	key, value, err := keyvalue.Unwrap()
 
-Example Map String String
+Basic Example Map String String
 
 Here is a basic example that uses a ‘map[string]string’ as the target for cliflag.Parse():…
 
@@ -34,7 +34,7 @@ Here is a basic example that uses a ‘map[string]string’ as the target for cl
 	
 	remainingTokens, err := cliflag.Parse(&target, tokens)
 
-Example Map String Interface
+Basic Example Map String Interface
 
 Here is a basic example that uses a ‘map[string]interface{}’ as the target for cliflag.Parse():…
 
