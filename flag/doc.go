@@ -46,5 +46,20 @@ Here is a basic example that uses a ‘map[string]interface{}’ as the target f
 	
 	remainingTokens, err := cliflag.Parse(&target, tokens)
 
+End Of Flags
+
+This package supports (the POSIX convention of) “--” to mark the end of the flags.
+
+So, for example, the following command:
+
+	myprogram --apple=one --banana=two -- --cherry=three filename.txt
+
+Has only 2 flags, not 3.
+
+So, the flags are “--apple=one”, and “--banana=two”.
+
+The token “--cherry=three” is not interpreted as a flag because it came after the “--”.
+
+And thus both “--cherry=three”, and “filename.txt” are (non-flag) arguments.
 */
 package cliflag
