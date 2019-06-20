@@ -68,6 +68,6 @@ import (
 //	
 //	cli.RunAndThenExit(handler)
 type Mux struct {
-	mutex       sync.RWMutex
-	handlers    map[string]Handler
+	mutex    sync.RWMutex
+	handlers map[string]Handler
 }
