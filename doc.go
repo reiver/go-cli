@@ -182,5 +182,21 @@ And ‘stdout’ is for everything else (that isn't an error message).
 Since both ‘stdout’, and ‘stdout’ are ‘io.Writer’, you can use funcs such as ‘fmt.Fprint()’, ‘fmt.Fprintf()’, and ‘fmt.Fprintln()’ to output to them.
 In addition to being able to just call each of their ‘.Write()’ methods directly.
 
+End Of Flags
+
+This package supports (the POSIX convention of) “--” to mark the end of the flags.
+
+So, for example, the following command:
+
+	myprogram --apple=one --banana=two -- --cherry=three filename.txt
+
+Has only 2 flags, not 3.
+
+So, the flags are “--apple=one”, and “--banana=two”.
+
+The token “--cherry=three” is not interpreted as a flag because it came after the “--”.
+
+And thus both “--cherry=three”, and “filename.txt” are (non-flag) arguments.
+
 */
 package cli
