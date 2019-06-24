@@ -80,7 +80,7 @@ func parse(storer Storer, tokens ...string) ([]string, error) {
 
 	head, tail := tokens[0], tokens[1:]
 
-	if !isFlag(head) {
+	if !IsFlag(head) {
 		return tokens, internalEndOfFlags{token:head}
 	}
 
@@ -144,7 +144,7 @@ func parse(storer Storer, tokens ...string) ([]string, error) {
 
 				return tail[2:], nil
 
-			case 0 < len(tail) &&  isFlag(tail[0]):
+			case 0 < len(tail) &&  IsFlag(tail[0]):
 
 				var value string = ""
 
@@ -154,7 +154,7 @@ func parse(storer Storer, tokens ...string) ([]string, error) {
 
 				return tail, nil
 
-			case 0 < len(tail) && !isFlag(tail[0]):
+			case 0 < len(tail) && !IsFlag(tail[0]):
 
 				var value string = tail[0]
 

@@ -1,6 +1,8 @@
-package cliflag
+package cliflag_test
 
 import (
+	"github.com/reiver/go-cli/flag"
+
 	"testing"
 )
 
@@ -454,7 +456,7 @@ func TestIsFlagTrue(t *testing.T) {
 
 	for testNumber, test := range tests {
 
-		if expected, actual := true, isFlag(test.Value); expected != actual {
+		if expected, actual := true, cliflag.IsFlag(test.Value); expected != actual {
 			t.Errorf("For test #%d, expected %t, but actually got %t.", testNumber, expected, actual)
 			t.Errorf("\tVALUE: %q", test.Value)
 			continue
@@ -1151,7 +1153,7 @@ func TestIsFlagFalse(t *testing.T) {
 
 	for testNumber, test := range tests {
 
-		if expected, actual := false, isFlag(test.Value); expected != actual {
+		if expected, actual := false, cliflag.IsFlag(test.Value); expected != actual {
 			t.Errorf("For test #%d, expected %t, but actually got %t.", testNumber, expected, actual)
 			t.Errorf("\tVALUE: %q", test.Value)
 			continue

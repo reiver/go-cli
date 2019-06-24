@@ -1,6 +1,6 @@
 package cliflag
 
-// isFlag returns true if ‘value’ is cli flag, else returns false otherwise.
+// IsFlag returns true if ‘value’ is cli flag, else returns false otherwise.
 //
 // Flags can begin with either a ‘-’ character, or a ‘+’ character.
 //
@@ -63,7 +63,7 @@ package cliflag
 //	++name=value
 //
 //	++name:value
-func isFlag(value string) bool {
+func IsFlag(value string) bool {
 	if 2 > len(value) {
 		return false
 	}
