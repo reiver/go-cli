@@ -142,7 +142,7 @@ func parse(storer Storer, tokens ...string) ([]string, error) {
 					return tokens, err
 				}
 
-				return tail[2:], nil
+				return tail[2:], internalEndOfFlags{tail[0]}
 
 			case 0 < len(tail) &&  IsFlag(tail[0]):
 

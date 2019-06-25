@@ -853,21 +853,6 @@ func TestParse(t *testing.T) {
 
 
 		{
-			Tokens: []string{"-a", "--", "one"},
-			ExpectedKey:      "a",
-			ExpectedValue:               "one",
-			ExpectedTokens:      []string{},
-		},
-
-
-
-
-
-
-
-
-
-		{
 			Tokens:   []string{"-a"},
 			ExpectedKey:        "a",
 			ExpectedValue:       "",
@@ -939,27 +924,6 @@ func TestParse(t *testing.T) {
 			ExpectedValue:        ":",
 			ExpectedTokens:   []string{"filename.txt"},
 		},
-
-
-
-
-
-
-
-
-
-		{
-			Tokens:   []string{"-m", "--", "-3"},
-			ExpectedKey:        "m",
-			ExpectedValue:                 "-3",
-			ExpectedTokens:             []string{},
-		},
-		{
-			Tokens:   []string{"-m", "--", "-3", "filename.txt"},
-			ExpectedKey:        "m",
-			ExpectedValue:                 "-3",
-			ExpectedTokens:             []string{"filename.txt"},
-		},
 	}
 
 	for testNumber, test := range tests {
@@ -972,6 +936,11 @@ func TestParse(t *testing.T) {
 				remainingTokens, err := cliflag.Parse(&keyvalue, test.Tokens...)
 				if nil != err {
 					t.Errorf("For test #%d, did not expect an error, but actually got one: (%T) %q", testNumber, err, err)
+					t.Errorf("\tTOKENS: %#v", test.Tokens)
+					t.Errorf("\tEXPECTED KEY: %q", test.ExpectedKey)
+					t.Errorf("\tEXPECTED VALUE: %q", test.ExpectedValue)
+					t.Errorf("\tEXPECTED REMAINING TOKENS: %#v", test.ExpectedTokens)
+					t.Errorf("\tACTUAL   REMAINING TOKENS: %#v", remainingTokens)
 					continue
 				}
 
@@ -1107,6 +1076,193 @@ func TestParse(t *testing.T) {
 				}
 			}
 
+		}
+
+	}
+}
+
+func TestParseEndOfFlags(t *testing.T) {
+
+	tests := []struct{
+		Tokens       []string
+		ExpectedFlags map[string]string
+		ExpectedArgs []string
+	}{
+		{
+			Tokens: []string{"-a", "--", "one"},
+			ExpectedFlags: map[string]string{
+			                  "a":       "one",
+			},
+			ExpectedArgs: []string{},
+		},
+
+
+
+
+
+
+
+
+
+		{
+			Tokens: []string{"-m", "--", "-3"},
+			ExpectedFlags: map[string]string{
+			                  "m":       "-3",
+			},
+			ExpectedArgs: []string{},
+		},
+		{
+			Tokens: []string{"-m", "--", "-3", "filename.txt"},
+			ExpectedFlags: map[string]string{
+			                  "m":       "-3",
+			},
+			ExpectedArgs:             []string{"filename.txt"},
+		},
+
+
+
+
+
+
+
+
+
+		{
+			Tokens: []string{"-m", "--", "one"},
+			ExpectedFlags: map[string]string{
+			                  "m":       "one",
+			},
+			ExpectedArgs: []string{},
+		},
+		{
+			Tokens: []string{"-m", "--", "one", "-n", "two"},
+			ExpectedFlags: map[string]string{
+			                  "m":       "one",
+			},
+			ExpectedArgs:              []string{"-n", "two"},
+		},
+		{
+			Tokens: []string{"-m", "--", "one", "-n", "two", "-o", "three"},
+			ExpectedFlags: map[string]string{
+			                  "m":       "one",
+			},
+			ExpectedArgs:              []string{"-n", "two", "-o", "three"},
+		},
+		{
+			Tokens: []string{"-m", "--", "one", "-n", "two", "-o", "three", "filename.txt"},
+			ExpectedFlags: map[string]string{
+			                  "m":       "one",
+			},
+			ExpectedArgs:              []string{"-n", "two", "-o", "three", "filename.txt"},
+		},
+
+
+
+
+
+
+
+
+
+		{
+			Tokens: []string{"-m", "This is a message", "--", "one"},
+			ExpectedFlags: map[string]string{
+			                  "m": "This is a message",
+			},
+			ExpectedArgs: []string{},
+		},
+		{
+			Tokens: []string{"-m", "This is a message", "--", "one", "-n", "two"},
+			ExpectedFlags: map[string]string{
+			                  "m": "This is a message",
+			},
+			ExpectedArgs:                            []string{"one", "-n", "two"},
+		},
+		{
+			Tokens: []string{"-m", "This is a message", "--", "one", "-n", "two", "-o", "three"},
+			ExpectedFlags: map[string]string{
+			                  "m": "This is a message",
+			},
+			ExpectedArgs:                            []string{"one", "-n", "two", "-o", "three"},
+		},
+		{
+			Tokens: []string{"-m", "This is a message", "--", "one", "-n", "two", "-o", "three", "filename.txt"},
+			ExpectedFlags: map[string]string{
+			                  "m": "This is a message",
+			},
+			ExpectedArgs:                            []string{"one", "-n", "two", "-o", "three", "filename.txt"},
+		},
+
+
+
+
+
+
+
+
+
+		{
+			Tokens: []string{"-v", "-m", "This is a message", "-n" ,"--", "-3", "-2+1", "--", "func"},
+			ExpectedFlags: map[string]string{
+			                  "v":"",
+			                        "m": "This is a message",
+			                                                   "n":"-3",
+			},
+			ExpectedArgs:                                              []string{"-2+1", "--", "func"},
+		},
+	}
+
+
+	TestLoop: for testNumber, test := range tests {
+
+		var actualFlags map[string]string
+
+		var actualArgs []string
+		{
+			var tokens []string = test.Tokens
+
+			ParseLoop: for 0 < len(tokens) {
+				var err error
+
+				before := len(tokens)
+
+				tokens, err = cliflag.Parse(&actualFlags, tokens...)
+				if nil != err {
+					switch err.(type) {
+					case cliflag.EndOfFlags:
+						break ParseLoop
+					default:
+						t.Errorf("For test #%d, did not expect an error, but actually got one: (%T) %q", testNumber, err, err)
+						continue TestLoop
+					}
+				}
+
+				after := len(tokens)
+
+				if after >= before {
+					t.Errorf("For test #%d, did not expect tokens length after parsing to be the same size or greater than before.", testNumber)
+					t.Errorf("\tBEFORE: %d", before)
+					t.Errorf("\tAFTER:  %d", after)
+					t.Errorf("\tTOKENS: %#v", test.Tokens)
+					t.Errorf("\tEXPECTED FLAGS: %#v", test.ExpectedFlags)
+					t.Errorf("\tACTUAL   FLAGS: %#v", actualFlags)
+					t.Errorf("\tEXPECTED ARGS: %#v", test.ExpectedArgs)
+					t.Errorf("\tACTUAL   ARGS: %#v", actualArgs)
+					continue TestLoop
+				}
+			}
+
+			actualArgs = tokens
+		}
+
+		if expected, actual := test.ExpectedFlags, actualFlags; !reflect.DeepEqual(expected, actual) {
+			t.Errorf("For test #%d, expected certain flags, but actually got different flags.", testNumber)
+			t.Errorf("\tTOKENS: %#v", test.Tokens)
+			t.Errorf("\tEXPECTED FLAGS: %#v", test.ExpectedFlags)
+			t.Errorf("\tACTUAL   FLAGS: %#v", actualFlags)
+			t.Errorf("\tEXPECTED ARGS: %#v", test.ExpectedArgs)
+			t.Errorf("\tACTUAL   ARGS: %#v", actualArgs)
+			continue TestLoop
 		}
 
 	}
