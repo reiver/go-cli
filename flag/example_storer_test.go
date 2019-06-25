@@ -12,7 +12,7 @@ type MyFlag struct {
 	Value interface{}
 }
 
-func (receiver *MyFlag) Store(key string, value interface{}) error {
+func (receiver *MyFlag) Store(key string, value string) error {
 	if nil == receiver {
 		return errors.New("Nil Receiver")
 	}

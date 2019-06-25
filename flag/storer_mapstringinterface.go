@@ -4,7 +4,7 @@ type storerMapStringInterface struct {
 	p *map[string]interface{}
 }
 
-func (receiver *storerMapStringInterface) Store(key string, value interface{}) error {
+func (receiver *storerMapStringInterface) Store(key string, value string) error {
 	if nil == receiver {
 		return errNilReceiver
 	}

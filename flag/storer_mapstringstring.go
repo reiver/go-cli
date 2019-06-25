@@ -4,14 +4,9 @@ type storerMapStringString struct {
 	p *map[string]string
 }
 
-func (receiver *storerMapStringString) Store(key string, value interface{}) error {
+func (receiver *storerMapStringString) Store(key string, value string) error {
 	if nil == receiver {
 		return errNilReceiver
-	}
-
-	castedValue, casted := value.(string)
-	if !casted {
-		return errUnsupportedValue
 	}
 
 	p := receiver.p
@@ -28,8 +23,7 @@ func (receiver *storerMapStringString) Store(key string, value interface{}) erro
 		return errFound
 	}
 
-	(*p)[key] = castedValue
+	(*p)[key] = value
 
 	return nil
 }
-

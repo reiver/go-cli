@@ -35,7 +35,7 @@ type KeyValue struct {
 //	remainingTokens, err := cliflag.Parse(&keyvalue, tokens...)
 //	
 //	key, value, err := keyvalue.Unwrap()
-func (receiver *KeyValue) Store(key string, value interface{}) error {
+func (receiver *KeyValue) Store(key string, value string) error {
 	if nil == receiver {
 		return errNilReceiver
 	}
@@ -44,14 +44,9 @@ func (receiver *KeyValue) Store(key string, value interface{}) error {
 		return errLoaded
 	}
 
-	castedValue, casted := value.(string)
-	if !casted {
-		return errUnsupportedValue
-	}
-
 	receiver.loaded = true
 	receiver.key    = key
-	receiver.value  = castedValue
+	receiver.value  = value
 
 	return nil
 }

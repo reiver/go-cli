@@ -14,7 +14,7 @@ type KeyValues struct {
 
 // Store makes &KeyValues fit the cli.Storer interface, which means we can pass
 // &KeyValues to cliflag.Parse() as the target.
-func (receiver *KeyValues) Store(key string, value interface{}) error {
+func (receiver *KeyValues) Store(key string, value string) error {
 	if nil == receiver {
 		return errors.New("Nil Receiver")
 	}
