@@ -81,7 +81,12 @@ func parse(storer Storer, tokens ...string) ([]string, error) {
 	head, tail := tokens[0], tokens[1:]
 
 	if !IsFlag(head) {
-		return tokens, internalEndOfFlags{token:head}
+		switch head {
+		case "--":
+			return tokens[1:], internalEndOfFlags{token:head}
+		default:
+			return tokens, internalEndOfFlags{token:head}
+		}
 	}
 
 	{

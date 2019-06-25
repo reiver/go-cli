@@ -1089,6 +1089,30 @@ func TestParseEndOfFlags(t *testing.T) {
 		ExpectedArgs []string
 	}{
 		{
+			Tokens: []string{"--"},
+			ExpectedFlags: map[string]string(nil),
+			ExpectedArgs: []string{},
+		},
+		{
+			Tokens: []string{"--", "--"},
+			ExpectedFlags: map[string]string(nil),
+			ExpectedArgs: []string{"--"},
+		},
+		{
+			Tokens: []string{"--", "--", "--", "--"},
+			ExpectedFlags: map[string]string(nil),
+			ExpectedArgs: []string{"--", "--", "--"},
+		},
+
+
+
+
+
+
+
+
+
+		{
 			Tokens: []string{"-a", "--", "one"},
 			ExpectedFlags: map[string]string{
 			                  "a":       "one",

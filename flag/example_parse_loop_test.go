@@ -117,5 +117,5 @@ func ExampleParse_loop() {
 	// KEY:   "banana"
 	// VALUE: "two"
 	//
-	// args = []string{"--", "--cherry=three", "filename.txt"}
+	// args = []string{"--cherry=three", "filename.txt"}
 }
