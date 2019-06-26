@@ -60,14 +60,10 @@ func TestKeyValuesDoubleStoreError(t *testing.T) {
 		}
 
 		{
-			actualValue, err := keyvalues.Load(expectedKey)
-			if nil != err {
-				t.Errorf("Did not expect an error, but actually got one: (%T) %q", err, err)
-				return
-			}
+			actualValue := keyvalues.Load(expectedKey)
 
-			if expected, actual := expectedValue, actualValue; expected != actual {
-				t.Errorf("Expected value %q, but actually got value %q.", expected, actual)
+			if expected, actual := cliflags.SomeValue(expectedValue), actualValue; expected != actual {
+				t.Errorf("Expected value %#v, but actually got value %#v.", expected, actual)
 				return
 			}
 		}

@@ -52,9 +52,9 @@ func (receiver *KeyValues) Len() int {
 	return len(receiver.data)
 }
 
-func (receiver *KeyValues) Load(key string) (string, error) {
+func (receiver *KeyValues) Load(key string) Value {
 	if nil == receiver {
-		return "", errNilReceiver
+		return NoValue()
 	}
 
 	receiver.mutex.RLock()
@@ -62,15 +62,15 @@ func (receiver *KeyValues) Load(key string) (string, error) {
 
 	data := receiver.data
 	if nil == data {
-		return "", internalKeyNotFound{key}
+		return NoValue()
 	}
 
 	value, found := data[key]
 	if !found {
-		return "", internalKeyNotFound{key}
+		return NoValue()
 	}
 
-	return value, nil
+	return SomeValue(value)
 }
 
 func (receiver *KeyValues) Store(key string, value string) error {
