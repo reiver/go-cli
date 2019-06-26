@@ -4,6 +4,12 @@ import (
 	"github.com/reiver/go-cli/flag"
 )
 
+// Parse parses command line args tokens, and extracts all the flags, and stores each
+// key-value pair of each flag in ‘target’.
+//
+// Note that Parse supports the POSIX "--" convention for indicating that the rest of
+// the tokens are not flags.
+//
 func Parse(target interface{}, tokens ...string) ([]string, error) {
 	if nil == target {
 		return tokens, errNilTarget
