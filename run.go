@@ -23,6 +23,10 @@ import (
 //	
 //	exticode := handler.Run(os.Stdin, os.Stdout, os.Stderr, os.Args[1:]...)
 func Run(handler Handler) ExitCode {
+	if nil == handler {
+		return ExitCodeInternalError
+	}
+
 	return handler.Run(os.Stdin, os.Stdout, os.Stderr, os.Args[1:]...)
 }
 
